@@ -1,0 +1,13 @@
+# Compte rendu TP1
+## Administration systèmes
+BERARD Lucas
+DUFRENE Mélic
+
+
+### Exercice 17
+
+```ii xkb-data ...
+ii xxd ...
+ii xz-utils ...
+ii zerofree ...
+ii zlibb1g:amd64 ```
