@@ -30,3 +30,24 @@ dpkg -l | wc  -l
 549
 ```
 La petite différence est dû au fait que dpkg ne prend pas en compte les dépendances alors que apt installe aussi les dépendances nécessaires. APT est un système de management de paquets.
+
+
+**Question 3:** Combien de paquets sont disponibles en téléchargement ?
+```
+$nombreDispo=apt list | wc -l 
+$nombreInstalle=apt list --installed | wc -l
+echo $((nombreDispo - nombreInstalle))
+```
+
+
+**Question 4:**  4. Créer un alias “maj” qui met à jour le système
+On ouvre le fichier .bashrc avec vim
+```
+cd ~
+vim .bashrc
+```
+Puis on écrit:
+```
+alias maj='sudo apt upgrade'
+```
+
