@@ -36,11 +36,11 @@ La petite différence est dû au fait que dpkg ne prend pas en compte les dépen
 ```
 $nombreDispo=apt list | wc -l 
 $nombreInstalle=apt list --installed | wc -l
-echo $((nombreDispo - nombreInstalle))
+echo $(($nombreDispo - $nombreInstalle))
 ```
 
 
-**Question 4:**  4. Créer un alias “maj” qui met à jour le système
+**Question 4:** Créer un alias “maj” qui met à jour le système.
 On ouvre le fichier .bashrc avec vim
 ```
 cd ~
@@ -50,4 +50,24 @@ Puis on écrit:
 ```
 alias maj='sudo apt upgrade'
 ```
+
+**Question 5:** A quoi sert le paquet fortunes ? Installez-le.
+La commande fortune permet d'avoir accès à des citations.
+```
+apt install fortune
+```
+
+**Question 6:** Quels paquets proposent de jouer au sudoku ?
+Le paquet 'sudoku' permet de jouer au sudoku.
+```
+sudo apt install sudoku
+```
+
+**Question 7:** Lister les derniers paquets installés explicitement avec la commande apt install.
+```
+apt list --installed | tail -2
+```
+Donne comme réponse zerofree (...) et zlibb1g (...)
+
+### Exercice 2
 
