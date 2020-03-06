@@ -133,7 +133,8 @@ gg
 ```
 ### Exercice 6
 **Question 1:** Installer la version Oracle de Java (avec l’ajout des PPA)
-```sudo add-apt-repository ppa:linuxuprising/java
+```
+sudo add-apt-repository ppa:linuxuprising/java
 sudo apt update
 sudo apt install oracle-java11-installer
 cd /etc/apt/sources.list.d
@@ -210,4 +211,70 @@ Description: Une description du dépôt
 reprepro -b . export
 ```
 
-**Question 5:**
+**Question 5:** Copiez le paquet origine-commande.deb créé précédemment dans le dossier packages du dépôt, puis,à la racine du dépôt, exécutez la commande
+```
+reprepro -b . includedeb cosmic origine-commande.deb
+```
+
+**Question 6:** Il faut à présent indiquer à apt qu’il existe un nouveau dépôt dans lequel il peut trouver des logiciels. Pour cela, créez (avec sudo) dans le dossier /etc/apt/sources.list.d le fichier repo-cpe.list contenant :
+deb file:/home/VOTRE_NOM/repo-cpe cosmic multiverse
+```
+sudo vim /etc/apt/sources.list.d/repo-cpe.list
+```
+
+
+#### Signature du dépôt avec GPG
+
+**Question 1:** Commencez par créer une nouvelle paire de clés avec la commande
+```
+gpg --gen-key
+```
+
+**Question 2:** Ajoutez à la configuration du dépôt (fichier distributions) la ligne suivante :
+```
+vim distribution
+SignWith: yes
+```
+
+**Question 3:** Ajoutez la clé à votre dépôt :
+```
+reprepro --ask-passphrase -b . export
+```
+
+**Question 4:** Ajoutez votre clé publique à votre dépôt avec la commande
+```
+gpg --export -a "auteur" > public.key
+```
+
+**Question 5:** Enfin, ajoutez cette clé à la liste des clés fiables connues deapt:
+```
+sudo apt-key add public.key
+```
+
+### Exercice 8
+
+**Question 1:** Commencez par cloner le dépôt git suivant :
+
+```
+git clone https://github.com/jubalh/nudoku
+```
+
+**Question 2:**  Rendez vous dans le dossier nudoku qui vient d’être créé et lancez la commande autoreconf -i (ainsi que spécifié dans le fichier README.md). A vous d’installer les éventuels paquets manquants (un peu d’aide : pour résoudre le problème de la macro AM_GNU_GETTEXT manquante, installez le paquet gettext).Relancez la commande autoreconf -i après chaque paquet installé jusqu’à cequ’elle se termine sans erreur.
+
+```
+cd nudoku
+vim README.md
+sudo apt-get install autoconf
+sudo apt-get install gettext
+
+```
+
+**Question 3:**  Exécutez le script configure
+```
+./configure
+```
+
+**Question 4:** Normalement, à cette étape on exécute la commandemake install, qui procède à la compilation proprement dite et à l’installation (copie des fichiers compilés dans leur dossier de destination). Mais dans notre cas, on va demander à checkinstall de s’en charger et de créer un paquet au format.deb:
+```
+sudo checkinstall
+```
