@@ -266,15 +266,4 @@ cd nudoku
 vim README.md
 sudo apt-get install autoconf
 sudo apt-get install gettext
-
-```
-
-**Question 3:**  Exécutez le script configure
-```
-./configure
-```
-
-**Question 4:** Normalement, à cette étape on exécute la commandemake install, qui procède à la compilation proprement dite et à l’installation (copie des fichiers compilés dans leur dossier de destination). Mais dans notre cas, on va demander à checkinstall de s’en charger et de créer un paquet au format.deb:
-```
-sudo checkinstall
 ```
